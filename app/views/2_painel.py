@@ -130,9 +130,9 @@ with kpi_cols[2]:
     )
 
 with kpi_cols[3]:
-    dose_reforco = len(df[df['dose_vacina'].str.contains('Reforço', na=False)])
+    dose_reforco = len(df[df['dose_vacina'].str.contains('Única', na=False)])
     st.metric(
-        "Doses de Reforço",
+        "Doses Únicas",
         formatar_numero(dose_reforco)
     )
 

@@ -20,7 +20,7 @@ st.set_page_config(
 plt.style.use('default')
 
 with st.sidebar:
-    on = st.toggle('Mostrar código fonte')
+    on = st.toggle('Mostrar consultas')
 
 # Título
 st.title("📊 Estatísticas de Vacinação do Rio de Janeiro em 2024")
@@ -56,7 +56,7 @@ with kpi_cols[3]:
 
 st.subheader("Vacinas com mais aplicações")
 
-query_q2 = """
+query1 = """
     SELECT
         V.nome AS Nome_Vacina,
         COUNT(A.id_aplicacao) AS Vezes_Utilizada
@@ -71,7 +71,7 @@ query_q2 = """
     LIMIT 10
 """
 
-df_q2 = execute_query(query_q2)
+df1 = execute_query(query1)
 col1, col2 = st.columns([1,1])
 with col1:
     st.markdown("""
@@ -85,14 +85,14 @@ with col1:
                 doses com a facilidade do reforço oral, mantendo o país protegido contra a reintrodução do vírus.            
                 """)
     if on:
-        st.code(query_q2, language='sql')
+        st.code(query1, language='sql')
 
 with col2:
-    if df_q2 is not None:
+    if df1 is not None:
         fig, ax = plt.subplots(figsize=(15, 6))
-        ax.bar(range(len(df_q2)), df_q2['Vezes_Utilizada'], color='steelblue')
-        ax.set_xticks(range(len(df_q2)))
-        ax.set_xticklabels(df_q2['Nome_Vacina'], rotation=45, ha='right')
+        ax.bar(range(len(df1)), df1['Vezes_Utilizada'], color='steelblue')
+        ax.set_xticks(range(len(df1)))
+        ax.set_xticklabels(df1['Nome_Vacina'], rotation=45, ha='right')
         ax.set_ylabel('Aplicações')
         plt.tight_layout()
         st.pyplot(fig, width='stretch')
@@ -101,7 +101,7 @@ with col2:
 st.subheader("Mapa de calor de Aplicações por Estabelecimento")
 col1, col2 = st.columns(2)
 
-query_q3 = """
+query3 = """
     SELECT
         E.nome_fantasia,
         COUNT(A.id_aplicacao) AS Total_Aplicacoes
@@ -120,7 +120,7 @@ query_q3 = """
         Total_Aplicacoes DESC
     LIMIT 5
 """
-df_q3 = execute_query(query_q3)
+df_q3 = execute_query(query3)
 
 
 query7 = """
@@ -146,7 +146,7 @@ with col1:
 
     if on:
         st.markdown('#### Consulta utilizada')
-        st.code(query_q3, language='sql')
+        st.code(query3, language='sql')
 
 st.markdown('## Vacinação em Idosos')
 col1, col2 = st.columns(2)
@@ -254,7 +254,7 @@ col1, col2 = st.columns([1,1])
 
 with col1:
     patient_id, idade, municipio, data, dose, vacina, unidade = execute_query(query6).loc[0].to_list()
-    st.write(f"""
+    st.markdown(f"""
     No dia **{pd.to_datetime(data).strftime('%d/%m/%Y')}**, o paciente de ID `{patient_id}` com **{idade} anos** recebeu a **{dose}** da 
     **{vacina}** na **{unidade}** no município de **{municipio}**""")
     if on:
