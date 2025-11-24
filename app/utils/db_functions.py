@@ -122,5 +122,3 @@ def load_municipalities():
     return df['municipio'].tolist() if not df.empty else []
 
 
-
-
