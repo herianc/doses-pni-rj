@@ -21,7 +21,7 @@ page4 = st.Page(page='views/4_debug.py',
                 icon='🪲')
 
 pages = {
-    "Páginas":[homepage, page2, page3, page4]
+    "Páginas":[homepage, page2, page3]
 }
     
 st.navigation(pages).run()
