@@ -318,6 +318,40 @@ with tab3:
     st.dataframe(resumo_municipio, width='stretch', hide_index=True)
 
 
+on = st.sidebar.toggle("Mostrar consulta", key="filtros_toggle")
+if on:
+    st.code("""
+    SELECT 
+        ad.id_aplicacao,
+        ad.data_vacina,
+        ad.dose_vacina,
+        ad.local_aplicacao,
+        ad.via_administracao,
+        ad.lote_vacina,
+        ad.cnes,
+        ad.id_vacina,
+        ad.id_paciente,
+        ad.id_estrategia_vacinacao,
+        p.sexo,
+        p.municipio AS paciente_municipio,
+        p.uf,
+        p.idade,
+        p.raca_cor,
+        v.nome AS vacina_nome,
+        e.nome_fantasia AS estabelecimento_nome,
+        e.municipio AS estabelecimento_municipio,
+        e.tipo AS estabelecimento_tipo,
+        e.latitude,
+        e.longitude,
+        ev.descricao AS estrategia_descricao
+    FROM AplicacaoDose ad
+    LEFT JOIN Paciente p ON ad.id_paciente = p.id_paciente
+    LEFT JOIN Vacina v ON ad.id_vacina = v.id
+    LEFT JOIN Estabelecimento e ON ad.cnes = e.id_cnes
+    LEFT JOIN EstrategiaVacinacao ev ON ad.id_estrategia_vacinacao = ev.id
+    WHERE data_vacina BETWEEN %s AND %s
+    """, language='sql')
+
 # ============= RODAPÉ =============
 st.markdown("---")
 st.markdown("""
