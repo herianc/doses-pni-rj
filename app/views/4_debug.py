@@ -3,11 +3,10 @@ import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
 import plotly.express as px
-from datetime import datetime, timedelta
+from datetime import datetime
 import mysql.connector
 from mysql.connector import Error
 import os
-from functools import lru_cache
 
 # ============= CONFIGURAÇÃO DA PÁGINA =============
 st.set_page_config(

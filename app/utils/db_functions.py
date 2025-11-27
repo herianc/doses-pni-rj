@@ -100,19 +100,6 @@ def load_dashboard_data(data_inicio, data_fim, municipios, doses, vacinas):
     
     return execute_query(query, params)
 
-@st.cache_data(ttl=300)
-def carregar_municípios(ufs_selecionadas):
-    """Carrega municípios baseado nas UFs selecionadas"""
-    if not ufs_selecionadas:
-        return []
-    
-    placeholders = ','.join(['%s'] * len(ufs_selecionadas))
-    query = f"SELECT DISTINCT municipio FROM Estabelecimento WHERE uf IN ({placeholders}) AND municipio IS NOT NULL ORDER BY municipio"
-    
-    df = execute_query(query, ufs_selecionadas)
-    return df['municipio'].tolist() if not df.empty else []
-
-
 # Filtro de Geografia
 @st.cache_data(ttl=300)
 def load_municipalities():
