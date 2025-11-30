@@ -1,6 +1,6 @@
 # 🐬 Trabalho Final de Banco de Dados 
 
-## ▫️Sobre o trabalho
+## Sobre o trabalho
 Este repositório contém o trabalho final da disciplina de **Banco de Dados (ICP489)** do semestre 2025.2 
 do curso de Ciência da Computação da Universidade Federal do Rio de Janeiro.    
    
@@ -61,3 +61,12 @@ uv sync
 cd app
 uv run streamlit run app.py
 ```
+
+## Imagens da aplicação
+### Painel 
+![](https://github.com/herianc/icp489-banco-de-dados/blob/main/images/screenshot_dash.png?raw=true)
+
+
+### Estatísticas de 2024
+![a](https://github.com/herianc/icp489-banco-de-dados/blob/main/images/screenshot_stats.png?raw=true)
+
