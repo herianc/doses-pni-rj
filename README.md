@@ -27,10 +27,10 @@ Tendo em vista o seu grande volume, este projeto restringe-se apenas a uma amost
 ├── 📁 db
 │   ├── init.sql
 │   └── 📁 modelagem
-│       ├──  BD_MODELAGEM_CONCEITUAL.png
-│       ├──  BD_MODELAGEM_LOGICA.png
-│       ├──  Conceitual_1.brM3
-|       └─── Lógico_1.brM3
+│       ├──  Conceitual.png
+│       ├──  Lógica.png
+│       ├──  Conceitual.brM3
+|       └─── Lógico.brM3
 ```
 
 A pasta `/db` contém o arquivo `init.sql` utilizado quando o docker compose é inicializado pela primeira vez, este script sql cria as tabelas e popula o banco com os registros utilizados no trabalho.
